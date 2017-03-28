@@ -1,0 +1,17 @@
+{
+  "name": "clashofdecks_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "PORT=3000 nodemon server",
+    "prod": "PORT=80 nodemon server"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "~4.9.8",
+    "mongoose": "~4.2.4"
+  },
+  "author": "Nuf",
+  "license": "ISC"
+}
