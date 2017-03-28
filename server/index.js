@@ -38,18 +38,38 @@ api.get('/deck/get', function (req, res) {
 });
 
 api.post('/deck/create', function (req, res) {
+    const cardList = require('./data/cards.json');
+    const deck = req.body.deck;
+    var canProceed = true;
+    for (var i = 0; i < deck.length; i++) {
+        if (!cardList.cards.includes(deck[i])) {
+            canProceed = false;
+        }
+    }
 
-    MongoClient.connect(config.database, function (error, db) {
-        if (error)
-            return funcCallback(error);
-        db.collection('decks').insertOne({
-            deck: req.body.deck
-        }, (err, result) => {
-            res.json({
-                "ok": "ok"
-            })
+    if (deck.length === 8 && canProceed) {
+        MongoClient.connect(config.database, function (error, db) {
+            if (error)
+                return funcCallback(error);
+            db.collection('decks').insertOne({deck}, (err, result) => {
+                res.json({
+                    success: true,
+                    body: {
+                        _id: result.ops[0]._id
+                    }
+                });
+            });
         });
-    });
+    } else {
+        res.json({
+            success: false,
+            body: {
+                msg: "Deck is not complete.",
+                errCode: 0
+            }
+        })
+    }
+
 });
 
 // connect the api routes under /api/*

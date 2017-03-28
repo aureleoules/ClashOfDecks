@@ -86,7 +86,7 @@ class Create extends React.Component {
         }).then(response => {
             console.log(response);
         }).then(err => {
-            console.log(err);
+            if(err) throw err;
         });
     }
     render() {
