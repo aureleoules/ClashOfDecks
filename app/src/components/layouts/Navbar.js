@@ -5,18 +5,28 @@ import {Link} from 'react-router-dom'
 class Navbar extends React.Component {
 
     render() {
+        const current = this.props.current || 'home';
         return (
             <div className="navbar">
                 <Segment inverted>
                     <Menu stackable inverted pointing secondary>
                         <Link to="/">
-                            <Menu.Item name={strings.nav.home} active={this.props.current === 'home'} onClick={this.handleItemClick}/>
+                            <Menu.Item
+                                name={strings.nav.home}
+                                active={current === 'home'}
+                                onClick={this.handleItemClick}/>
                         </Link>
                         <Link to="/create">
-                            <Menu.Item name={strings.nav.submit} active={this.props.current === 'create'} onClick={this.handleItemClick}/>
+                            <Menu.Item
+                                name={strings.nav.submit}
+                                active={current === 'create'}
+                                onClick={this.handleItemClick}/>
                         </Link>
                         <Link to="/best">
-                            <Menu.Item name={strings.nav.top} active={this.props.current === 'best'} onClick={this.handleItemClick}/>
+                            <Menu.Item
+                                name={strings.nav.top}
+                                active={current === 'best'}
+                                onClick={this.handleItemClick}/>
                         </Link>
 
                         <Menu.Item position='right'>

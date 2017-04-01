@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Create from './pages/Create';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import DeckPage from './pages/DeckPage';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 class App extends React.Component {
     render() {
         return (
@@ -10,6 +10,7 @@ class App extends React.Component {
                 <div>
                     <Route exact path="/" component={Home}/>
                     <Route path="/create" component={Create}/>
+                    <Route path="/deck/:deckId" component={DeckPage}/>
                     {/* <Route path="/best" component={Best}/> */}
                 </div>
             </Router>

@@ -13,13 +13,22 @@ let strings = new LocalizedStrings({
             top: "Best"
         },
         home: {
-            startBtn: "Generate a deck!"
+            startBtn: "Random deck!"
         },
         create: {
             missingCard: "Add a card!",
             chooseCards: "Choose cards:",
-            finalizeBtn: "Finish!"
+            finalizeBtn: "Finish!",
+            averageCost: "Average cost"
         },
+        FinishDeck: {
+            header: "More informations!",
+            close: "Finish",
+            inputTitle: "Title",
+            inputDesc: "Description",
+            noTitleConfirm: "Insert a title!",
+            noTitleConfirmSub: "Please."
+        }
     },
     fr: {
         app: {
@@ -33,12 +42,21 @@ let strings = new LocalizedStrings({
             top: "Meilleurs"
         },
         home: {
-            startBtn: "Générer un deck!"
+            startBtn: "Deck aléatoire!"
         },
         create: {
             missingCard: "Ajouter une carte!",
             chooseCards: "Choisissez des cartes:",
-            finalizeBtn: "Terminer!"
+            finalizeBtn: "Terminer!",
+            averageCost: "Coût moyen"
+        },
+        FinishDeck: {
+            header: "Plus d'informations!",
+            close: "Terminer",
+            inputTitle: "Titre",
+            inputDesc: "Description",
+            noTitleConfirm: "Insérez un titre!",
+            noTitleConfirmSub: "S'il vous plaît."
         }
     }
 });

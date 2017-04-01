@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@font-face {
+    font-family: "Supercell";
+    src: url('../fonts/Supercell-magic-webfont.ttf');
+}
+
 .navbar {
     background-color: #1c1d1e
 }
@@ -8,13 +13,12 @@
 }
 
 .div-create {
-    padding-top: 30px;
+    padding-top: 5px;
 }
 
 .div-cards-selector {
     margin-top: 25px;
     text-align: center;
-
 }
 
 .deck {
@@ -26,7 +30,17 @@
     position: relative;
     border-radius: 16px;
     text-align: center;
-    background-color: #fafafa
+    background-color: #fafafa;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 8px 8px 15px 4px rgba(0, 0, 0, 0.66)
+}
+.home-div-deck {
+    margin-top: 5%
+}
+
+.inputs > * {
+    padding-bottom: 7px
 }
 
 .clash-card {
@@ -34,6 +48,11 @@
     margin: 5px;
     padding: 0px 4px 4px 0px;
     border-radius: 15px;
+}
+
+.card-group {
+    display: inline-block;
+    padding: 3px
 }
 
 .deck-card {
@@ -51,11 +70,56 @@
     width: 80px;
 }
 
+.elixir {
+    height: 25px;
+    vertical-align: bottom;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.cost {
+    height: 32px;
+    width: 55px;
+    text-align: center;
+    padding-top: 7px;
+    padding-right: 28px;
+    font-size: 1.1rem;
+    font-family: 'Supercell';
+    color: #fff;
+    background: url(/images/cost.png) no-repeat;
+    background-size: contain;
+    margin-top: -5px;
+    position: absolute;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 2px #000;
+}
+
+.small-cost {
+    height: 25px;
+    width: 45px;
+    text-align: center;
+    padding-top: 3px;
+    padding-right: 25px;
+    font-size: 0.80rem;
+    font-family: 'Supercell';
+    color: #fff;
+    background: url(/images/cost.png) no-repeat;
+    background-size: contain;
+    margin-top: -5px;
+    position: absolute;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 2px #000;
+}
+
 .missing-card {
     background-color: #2d2e30;
     color: #fafafa;
     line-height: 99px;
     display: inline-block;
+    border-radius: 10px
 }
 
 .missing-card-text {
@@ -74,9 +138,8 @@ body {
 
 .home {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 11%;
 }
-
 .home-div-header {
     color: #fafafa
 }
@@ -101,6 +164,11 @@ body {
 .draggable-card {
     cursor: pointer;
     cursor: hand;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .cards-list {
