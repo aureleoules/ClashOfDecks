@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import {Button, Input} from 'semantic-ui-react'
+import {Button, Input, Select} from 'semantic-ui-react'
 import Navbar from '../layouts/Navbar';
 import Deck from '../forms/Deck';
 import ClashCards from '../../json/cards.json';
@@ -12,7 +12,8 @@ const defaultCards = Object.assign({}, ClashCards);
 class Create extends React.Component {
     state = {
         deck: [],
-        cards: ClashCards
+        cards: ClashCards,
+        orderMethod: "elixirCost"
     }
 
     componentWillMount() {}
@@ -92,7 +93,10 @@ class Create extends React.Component {
     }
     submitDeck = (infos) => {
         RestClient
-            .post('deck/create', {"deck": this.state.deck, infos: infos})
+            .post('deck/create', {
+            "deck": this.state.deck,
+            infos: infos
+        })
             .then(response => {
                 console.log(response);
             })
@@ -105,23 +109,62 @@ class Create extends React.Component {
     modalCallBack = (infos) => {
         this.submitDeck(infos);
     }
-    render() {
+    orderBy = method => {
+        if(method === "elixir") {
+
+        }
+    }
+
+    getCards = () => {
+        var filteredCards = this.state.cards.sort((a, b) => {
+            var keyA = a[this.state.orderMethod];
+            var keyB = b[this.state.orderMethod];
+            if(keyA < keyB) return -1;
+            if(keyA > keyB) return 1;
+            return 0;
+        });
         const cardsList = Object
-            .keys(this.state.cards)
+            .keys(filteredCards)
             .map((item, key) => {
                 return (
                     <div key={key} className="card-group">
-                        <span className="small-cost">{ClashCards[key].elixirCost}</span>
+                        <span className="small-cost">{filteredCards[key].elixirCost}</span>
                         <img
                             className="draggable-card"
                             onClick={() => this.addCardToDeck(key)}
-                            alt={ClashCards[key].idName}
+                            alt={filteredCards[key].idName}
                             width="60"
-                            src={`/images/cards/${ClashCards[key].idName}.png`}/>
+                            src={`/images/cards/${filteredCards[key].idName}.png`}/>
                     </div>
-
                 );
             });
+        return cardsList;
+    }
+    render() {
+
+        const orderOptions = [
+            {
+                key: 0,
+                value: "elixirCost",
+                text: strings.create.orderBy.elixirCost
+            }, {
+                key: 1,
+                value: "rarity",
+                text: strings.create.orderBy.rarity
+            }, {
+                key: 2,
+                value: "arena",
+                text: strings.create.orderBy.arena
+            }, {
+                key: 3,
+                value: "type",
+                text: strings.create.orderBy.type
+            }, {
+                key: 4,
+                value: "idName",
+                text: strings.create.orderBy.name
+            }
+        ]
         return (
             <div>
                 <Navbar current='create'/>
@@ -136,13 +179,19 @@ class Create extends React.Component {
                                 <FinishDeck
                                     disabled={!this.isDeckComplete()}
                                     text={strings.create.finalizeBtn}
-                                    callback={this.modalCallBack}
-                                />
+                                    callback={this.modalCallBack}/>
 
                             </div>
                             <div className="cards-list">
-                                <h2>{strings.create.chooseCards}</h2>
-                                {cardsList}
+                                <div>
+                                    <h2>{strings.create.chooseCards}</h2>
+                                    <Select
+                                        onChange={(e, {value}) => {this.setState({orderMethod: value})}}
+                                        className="select-orderby"
+                                        placeholder='Trier par'
+                                        options={orderOptions}/>
+                                </div>
+                                {this.getCards()}
                             </div>
                         </div>
                     </div>

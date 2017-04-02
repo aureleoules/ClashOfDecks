@@ -8,13 +8,12 @@ import {
     TextArea,
     Form,
     Confirm,
-    Dimmer
+    Select
 } from 'semantic-ui-react'
 import strings from '../../localization/strings';
 class FinishDeck extends React.Component {
     state = {
-        modalOpen: false,
-        confirmOpen: false
+        modalOpen: false
     }
 
     handleOpen = (e) => this.setState({modalOpen: true})
@@ -23,36 +22,48 @@ class FinishDeck extends React.Component {
         this.setState({modalOpen: false});
     }
     finish = (e) => {
-        if (!this.titleInput) {
-            this.confirmOpen();
-        } else {
-            this
-                .props
-                .callback({title: this.titleInput, desc: this.descInput});
-            this.handleClose(e);
-        }
-    }
-    confirmCancel = () => {
-        this.setState({confirmOpen: false})
-    }
-    confirmOpen = () => {
-        this.setState({confirmOpen: true})
+        this
+            .props
+            .callback({title: this.titleInput, desc: this.descInput, type: this.typeInput});
+        this.handleClose(e);
     }
 
     render() {
+        const options = [
+            {
+                key: 'offensive',
+                value: 'offensive',
+                text: strings.FinishDeck.TypeOptions.offensive
+            }, {
+                key: 'defensive',
+                value: 'defensive',
+                text: strings.FinishDeck.TypeOptions.defensive
+            }, {
+                key: 'rush',
+                value: 'rush',
+                text: strings.FinishDeck.TypeOptions.rush
+            }, {
+                key: 'spawner',
+                value: 'spawner',
+                text: strings.FinishDeck.TypeOptions.spawner
+            }, {
+                key: 'tank',
+                value: 'tank',
+                text: strings.FinishDeck.TypeOptions.tank
+            }, {
+                key: 'buildings',
+                value: 'buildings',
+                text: strings.FinishDeck.TypeOptions.buildings
+            }, {
+                key: 'none',
+                value: 'none',
+                text: strings.FinishDeck.TypeOptions.none
+            }
+        ]
         return (
             <div>
-                <Dimmer
-                active={this.state.confirmOpen}
-                onClickOutside={this.confirmCancel}
-                page>
-                    <Header as='h2' icon inverted>
-                        {strings.FinishDeck.noTitleConfirm}
-                        <Header.Subheader>{strings.FinishDeck.noTitleConfirmSub}</Header.Subheader>
-                    </Header>
-                </Dimmer>
                 <Modal
-                    trigger={<Button disabled = {
+                    trigger={< Button disabled = {
                     this.props.disabled
                 }
                 onClick = {
@@ -72,6 +83,13 @@ class FinishDeck extends React.Component {
                             }}
                                 fluid
                                 placeholder={strings.FinishDeck.inputTitle}/>
+                            <Select
+                                fluid
+                                onChange={(e, {value}) => {
+                                this.typeInput = value
+                            }}
+                                placeholder={strings.FinishDeck.TypeOptions.placeholder}
+                                options={options}/>
                             <TextArea
                                 onChange={input => {
                                 this.descInput = input.target.value

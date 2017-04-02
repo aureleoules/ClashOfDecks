@@ -10,7 +10,8 @@ let strings = new LocalizedStrings({
         nav: {
             home: "Home",
             submit: "Create",
-            top: "Best"
+            top: "Best",
+            searchPlaceHolder: "Search..."
         },
         home: {
             startBtn: "Random deck!"
@@ -19,7 +20,14 @@ let strings = new LocalizedStrings({
             missingCard: "Add a card!",
             chooseCards: "Choose cards:",
             finalizeBtn: "Finish!",
-            averageCost: "Average cost"
+            averageCost: "Average cost",
+            orderBy: {
+                elixirCost: "Order by Elixir cost",
+                rarity: "Order by Rarity",
+                arena: "Order by Arena",
+                type: "Order by Type",
+                name: "Order by Name"
+            }
         },
         FinishDeck: {
             header: "More informations!",
@@ -27,7 +35,17 @@ let strings = new LocalizedStrings({
             inputTitle: "Title",
             inputDesc: "Description",
             noTitleConfirm: "Insert a title!",
-            noTitleConfirmSub: "Please."
+            noTitleConfirmSub: "Please.",
+            TypeOptions: {
+                placeholder: "Type of deck",
+                offensive: "Offensive",
+                defensive: "Defensive",
+                rush: "Rush",
+                tank: "Tank",
+                spawner: "Spawner",
+                buildings: "Buildings",
+                none: "None"
+            }
         }
     },
     fr: {
@@ -39,7 +57,8 @@ let strings = new LocalizedStrings({
         nav: {
             home: "Accueil",
             submit: "Ajouter",
-            top: "Meilleurs"
+            top: "Meilleurs",
+            searchPlaceHolder: "Rechercher..."
         },
         home: {
             startBtn: "Deck aléatoire!"
@@ -48,7 +67,14 @@ let strings = new LocalizedStrings({
             missingCard: "Ajouter une carte!",
             chooseCards: "Choisissez des cartes:",
             finalizeBtn: "Terminer!",
-            averageCost: "Coût moyen"
+            averageCost: "Coût moyen",
+            orderBy: {
+                elixirCost: "Trier par coût d'Elixir",
+                rarity: "Trier par rareté",
+                arena: "Trier par arène",
+                type: "Trier par type",
+                name: "Trier par nom"
+            }
         },
         FinishDeck: {
             header: "Plus d'informations!",
@@ -56,7 +82,17 @@ let strings = new LocalizedStrings({
             inputTitle: "Titre",
             inputDesc: "Description",
             noTitleConfirm: "Insérez un titre!",
-            noTitleConfirmSub: "S'il vous plaît."
+            noTitleConfirmSub: "S'il vous plaît.",
+            TypeOptions: {
+                placeholder: "Type de deck",
+                offensive: "Offensif",
+                defensive: "Defensif",
+                rush: "Rush",
+                tank: "Tank",
+                spawner: "Spawner",
+                buildings: "Bâtiments",
+                none: "Aucun"
+            }
         }
     }
 });

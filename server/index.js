@@ -7,6 +7,8 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const api = express.Router();
 const bodyParser = require('body-parser');
+const cardList = require('./data/cards.json');
+
 app.use(express.static(path.resolve(__dirname, '../app/build')));
 /** bodyParser.urlencoded(options)
  * Parses the text as URL encoded data (which is how browsers tend to send form data from regular forms set to POST)
@@ -70,23 +72,64 @@ api.get('/deck/get', (req, res) => {
     }
 });
 
+const getMaxArena = deck => {
+    var maxArena = 0;
+    for (let i = 0; i < deck.length; i++) {
+        for (let j = 0; j < cardList.length; j++) {
+            if (deck[i] === cardList[j].idName && cardList[j].arena > maxArena) {
+                maxArena = cardList[j].arena;
+            }
+        }
+    }
+    return maxArena;
+}
+
+const getAverageCost = deck => {
+    var average = 0;
+    for (let i = 0; i < deck.length; i++) {
+        for (let j = 0; j < cardList.length; j++) {
+            if (deck[i] === cardList[j].idName) {
+                average += cardList[j].elixirCost;
+            }
+        }
+    }
+    average = average / deck.length;
+    return average.toFixed(1);
+}
+
 api.post('/deck/create', (req, res) => {
-    const cardList = require('./data/cards.json');
+    const deckTypes = require('./data/deckTypes.json');
+    var cardsArray = Object.keys(cardList).map(item => cardList[item].idName);
+
     const deck = req.body.deck;
+    const deckInfos = req.body.infos;
+    if (!deckInfos.type) deckInfos.type = null;
+
     var canProceed = true;
-    for (var i = 0; i < deck.length; i++) {
-        if (!cardList.cards.includes(deck[i])) {
+    canProceed = deckTypes.indexOf(deckInfos.type) > -1;
+    for (let i = 0; i < deck.length; i++) {
+        if (!cardsArray.includes(deck[i])) {
             canProceed = false;
         }
     }
 
     if (deck.length === 8 && canProceed) {
+        const maxArena = getMaxArena(deck);
+        const averageCost = getAverageCost(deck);
+        const document = {
+            deck: deck,
+            infos: {
+                title: deckInfos.title,
+                description: deckInfos.desc,
+                type: deckInfos.type,
+                arena: maxArena,
+                averageCost: averageCost
+            }
+        }
         MongoClient.connect(config.database, function (error, db) {
             if (error)
                 return funcCallback(error);
-            db.collection('decks').insertOne({
-                deck
-            }, (err, result) => {
+            db.collection('decks').insertOne(document, (err, result) => {
                 res.json({
                     success: true,
                     body: {
@@ -107,6 +150,22 @@ api.post('/deck/create', (req, res) => {
 
 });
 
+api.get('/deck/search', (req, res) => {
+    const query = req.query.request;
+    if(query) {
+        MongoClient.connect(config.database, (err, db) => {
+            if(err) return funcCallback(err);
+            db.collection('decks').find({
+                $text: {
+                    $search: query
+                }
+            }).toArray((err, data) => {
+                if(err) throw err;
+                res.json({success: true, body: data});
+            });
+        });
+    }
+});
 // connect the api routes under /api/*
 
 app.use('/api', api);

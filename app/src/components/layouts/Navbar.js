@@ -1,9 +1,12 @@
 import React from 'react';
-import {Menu, Segment, Button} from 'semantic-ui-react'
+import {Menu, Segment, Button, Input, Icon} from 'semantic-ui-react'
 import strings from '../../localization/strings';
 import {Link} from 'react-router-dom'
 class Navbar extends React.Component {
-
+    search = (e) => {
+        e.preventDefault();
+        this.context.router.history.push(`/search/${this.inputSearch}`);
+    }
     render() {
         const current = this.props.current || 'home';
         return (
@@ -30,12 +33,17 @@ class Navbar extends React.Component {
                         </Link>
 
                         <Menu.Item position='right'>
-                            <Button inverted>Random</Button>
+                            <form onSubmit={e => this.search(e)}>
+                                <Input onChange={e => {this.inputSearch = e.target.value}} icon={<Icon onClick={e => this.search(e)} name='search' circular link />} placeholder={strings.nav.searchPlaceHolder} />
+                            </form>
                         </Menu.Item>
                     </Menu>
                 </Segment>
             </div>
         )
+    }
+    static contextTypes = {
+        router: React.PropTypes.object
     }
 }
 

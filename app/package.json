@@ -2,7 +2,6 @@
   "name": "clashofdecks",
   "version": "1.0.0",
   "devDependencies": {
-    "semantic-ui": "^2.2.9",
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.0.0",
@@ -40,6 +39,7 @@
     "react-dev-utils": "^0.3.0",
     "recursive-readdir": "2.1.0",
     "rimraf": "2.5.4",
+    "semantic-ui": "^2.2.9",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -53,12 +53,9 @@
     "better-react-spinkit": "^2.0.0-6",
     "react": "15.4.2",
     "react-dom": "15.4.2",
-    "react-drag-and-drop": "^2.4.0",
-    "react-loading": "0.0.9",
     "react-localization": "0.0.13",
-    "react-router": "^4.0.0",
+    "react-router": "4.0.0-alpha.3",
     "react-router-dom": "^4.0.0",
-    "react-spinkit": "^2.1.1",
     "semantic-ui-react": "^0.67.1"
   },
   "scripts": {
