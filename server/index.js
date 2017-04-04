@@ -171,7 +171,7 @@ api.get('/deck/search', (req, res) => {
 app.use('/api', api);
 
 app.get('*', (req, res) => {
-    response.sendFile(path.resolve(__dirname, '../app/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../app/build', 'index.html'));
 });
 
 // Start the server
