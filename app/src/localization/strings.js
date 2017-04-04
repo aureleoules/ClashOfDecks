@@ -46,6 +46,17 @@ let strings = new LocalizedStrings({
                 buildings: "Buildings",
                 none: "None"
             }
+        },
+        search: {
+            infos: {
+                averageCost: "Average cost",
+                arena: "Arena",
+                title: "Title",
+                description: "Description",
+                type: "Type"
+            },
+            moreInfos: "More infos",
+            noDeck: "There is no deck..."
         }
     },
     fr: {
@@ -93,6 +104,17 @@ let strings = new LocalizedStrings({
                 buildings: "Bâtiments",
                 none: "Aucun"
             }
+        },
+        search: {
+            infos: {
+                averageCost: "Coût moyen",
+                arena: "Arène",
+                title: "Titre",
+                description: "Description",
+                type: "Type"
+            },
+            moreInfos: "Plus d'infos",
+            noDeck: "Il n'y a aucun deck..."
         }
     }
 });

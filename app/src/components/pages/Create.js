@@ -98,7 +98,9 @@ class Create extends React.Component {
             infos: infos
         })
             .then(response => {
-                console.log(response);
+                if(response.data.success) {
+                    this.context.router.history.push(`/deck/${response.data.body._id}`);
+                }
             })
             .then(err => {
                 if (err) 
@@ -173,7 +175,7 @@ class Create extends React.Component {
                         <Deck createDeck removeCard={this.removeCardOfDeck} cards={this.getDeck()}/>
                         <div className="div-cards-selector">
                             <div className="finalize">
-                                <h3>{strings.create.averageCost}: {this.getDeckAverageCost()}
+                                <h3>{strings.create.averageCost}: {this.getDeckAverageCost() + ' '}
                                     <img className="elixir" src="/images/cost.png"/>
                                 </h3>
                                 <FinishDeck
@@ -198,6 +200,9 @@ class Create extends React.Component {
                 </div>
             </div>
         )
+    }
+    static contextTypes = {
+        router: React.PropTypes.object
     }
 }
 

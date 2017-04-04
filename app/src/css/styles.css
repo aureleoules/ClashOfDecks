@@ -20,9 +20,45 @@
     margin-top: 25px;
     text-align: center;
 }
+
 .select-orderby {
     margin-bottom: 8px
 }
+
+.listofdecks> * {
+    margin-bottom: 15px
+}
+.search-div {
+    text-align: center
+}
+.deckPage-deck {
+    margin-top: 8% !important
+}
+.search-nodeck {
+    text-align: center;
+    padding-top: 11%
+}
+
+.deckInfos {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 200px;
+    background-color: #fafafa;
+    text-align: center;
+    display: inline-block;
+    margin-top: 13px;
+    padding: 5px 20px
+}
+.font-supercell {
+    font-family: Supercell;
+    font-size: 11px;
+    color: #1C1D1E;
+}
+.text-center {
+    text-align: center
+}
+
 .deck {
     width: 420px;
     margin: auto;
@@ -37,12 +73,29 @@
     padding-right: 10px;
     box-shadow: 8px 8px 15px 4px rgba(0, 0, 0, 0.66)
 }
+
 .home-div-deck {
     margin-top: 5%
 }
+.text-teal {
+    color: #00b5ad;
+}
+.deckPage-infos {
+    text-align: left;
+    width: fit-content;
+    margin-top: 11%;
+    min-width: 250px
+}
 
-.inputs > * {
+.block {
+    display: block !important;
+}
+.inputs>* {
     padding-bottom: 7px
+}
+
+.margin-top-5 {
+    margin-top: 5px
 }
 
 .clash-card {
@@ -81,7 +134,9 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 }
-
+.small-elixir {
+    height: 16px
+}
 .cost {
     height: 32px;
     width: 55px;
@@ -142,6 +197,7 @@ body {
     text-align: center;
     margin-top: 11%;
 }
+
 .home-div-header {
     color: #fafafa
 }

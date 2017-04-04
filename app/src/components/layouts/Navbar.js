@@ -8,7 +8,7 @@ class Navbar extends React.Component {
         this.context.router.history.push(`/search/${this.inputSearch}`);
     }
     render() {
-        const current = this.props.current || 'home';
+        const current = this.props.current;
         return (
             <div className="navbar">
                 <Segment inverted>
@@ -25,13 +25,6 @@ class Navbar extends React.Component {
                                 active={current === 'create'}
                                 onClick={this.handleItemClick}/>
                         </Link>
-                        <Link to="/best">
-                            <Menu.Item
-                                name={strings.nav.top}
-                                active={current === 'best'}
-                                onClick={this.handleItemClick}/>
-                        </Link>
-
                         <Menu.Item position='right'>
                             <form onSubmit={e => this.search(e)}>
                                 <Input onChange={e => {this.inputSearch = e.target.value}} icon={<Icon onClick={e => this.search(e)} name='search' circular link />} placeholder={strings.nav.searchPlaceHolder} />

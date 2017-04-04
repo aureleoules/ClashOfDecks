@@ -56,11 +56,10 @@ class Deck extends React.Component {
             )
         }
         return (
-            <div className="deck">
+            <div className={'deck ' + this.props.className}>
                 {cards}
                 {missing}
             </div>
-
         )
     }
     // static propTypes = {     cards: React.PropTypes.array.isRequired }

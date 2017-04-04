@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "PORT=3000 nodemon server",
     "prod": "PORT=80 nodemon server"
   },
   "dependencies": {
